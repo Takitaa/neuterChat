@@ -1,79 +1,71 @@
 <template>
-	<v-app id="app">
-		<div class="button-close" id="button-toggle">
-			<VueToggles
-				height="30"
-				width="90"
-				margin="100"
-				checked-text="Chat On"
-				unchecked-text=" Chat Off"
-				:value="buttonToggle"
-				@click="toggleOn"
-			/>
-		</div>
+  <div id="app">
+    <!-- <ToggleButton :buttonToggled="buttonToggled"></ToggleButton>-->
+    <ToggleButton></ToggleButton>
 
-		<div class="side-panel">
-			<slide-out dock="right" :visible.sync="visible" title="The title">
-				<div id="chat-container">
-					<p>The content</p>
-					<v-tollbar flat></v-tollbar>
-					<bubble-chat
-						:position="chatPosition"
-						:messages="messagesList"
-						:text-field="'message'"
-						:sender-name-field="'username'"
-						:avatar-link-field="''"
-					>
-					</bubble-chat>
-				</div>
-			</slide-out>
-		</div>
-	</v-app>
+    <!-- <SlidePanel @status-toggle="handleStatusToggle"></SlidePanel>-->
+    <SlidePanel></SlidePanel>
+  </div>
 </template>
 
 <script>
+import ToggleButton from "./components/ToggleButton.vue";
+import SlidePanel from "./components/SlidePanel.vue";
+
 export default {
-	data() {
-		return {
-			buttonToggle: false,
-			visible: false,
+  name: "App",
+  components: {
+    ToggleButton,
+    SlidePanel,
+  },
 
-			messagesList: [
-				{
-					username: 'John Doe',
-					message: 'Hey guys! How are you?',
-					iconUrl: 'link',
-				},
-			],
+  data() {
+    return {
+      // buttonToggled: false,
+      // visible: false,
+      // value: undefined,
+      // messagesList: [
+      //   {
+      //     username: "John Doe",
+      //     message: "Hey guys! How are you?",
+      //     iconUrl: "https://www.link-to-john-doe-pic.jpg",
+      //   },
+      // ],
+    };
+  },
 
-			inputContent: '',
-		};
-	},
-
-	computed: {
-		setImage: function () {
-			return `<img src="https://robohash.org/${this.inputContent}">`;
-		},
-	},
-
-	methods: {
-		toggleOn: function (toggled) {
-			this.buttonToggle = !this.buttonToggle;
-
-			if (!toggled) {
-				this.visible = true;
-			}
-
-			//console.log(event.target.event);
-			//const statusButtonToggle = event.target.value;
-			//this.$emit("status-toggle", statusButtonToggle);
-		},
-
-		handleInputChange: function (event) {
-			this.inputContent = event.target.value;
-		},
-	},
+  methods: {
+    // handleStatusToggle: function (statusToggle) {
+    //   console.log(statusToggle);
+    // },
+  },
 };
 </script>
 
-<style></style>
+<style>
+#app {
+  margin-top: px;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  color: blue;
+}
+
+#button {
+  width: 45px;
+  float: right;
+  /* pura mágica */
+  position: absolute;
+  top: 50%; /* posiciona na metade da tela */
+  margin-top: -25px;
+}
+
+#footer {
+  position: fixed;
+  padding: 10px 10px 0px 10px;
+  bottom: 0;
+  width: 100%;
+  /* Height of the footer*/
+  height: 40px;
+  background: grey;
+}
+</style>
