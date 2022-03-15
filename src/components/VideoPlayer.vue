@@ -1,10 +1,9 @@
 <template>
 	<div class="video-player">
-		**<video
+		<video
 			id="video"
 			class="video-js"
 			width="1050"
-			autoplay="true"
 			muted="true"
 			preload="auto"
 			poster="//vjs.zencdn.net/v/oceans.png"
@@ -36,7 +35,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-video {
+.video {
 	width: 100%;
 	height: auto;
 	/**display: block;

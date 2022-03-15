@@ -1,71 +1,82 @@
 <template>
-  <div id="app">
-    <!-- <ToggleButton :buttonToggled="buttonToggled"></ToggleButton>-->
-    <ToggleButton></ToggleButton>
+	<div id="app">
+		<div class="toggle" id="button-toggle">
+			<VueToggles
+				id="toggle"
+				height="30"
+				width="90"
+				margin="100"
+				checked-text="Chat On"
+				unchecked-text=" Chat Off"
+				:value="buttonToggled"
+				@click="toggleOn"
+			>
+			</VueToggles>
+		</div>
 
-    <!-- <SlidePanel @status-toggle="handleStatusToggle"></SlidePanel>-->
-    <SlidePanel></SlidePanel>
-  </div>
+		<div class="video">
+			<VideoPlayer></VideoPlayer>
+
+			<div id="side-panel">
+				<slide-out dock="right" :visible.sync="visible" :size="350">
+					<!---->
+					<div id="chat">
+						<p>Welcome to the Chat</p>
+						<bubble-chat
+							:position="chatPosition"
+							:messages="messagesList"
+							:text-field="'message'"
+							:sender-name-field="'username'"
+							:avatar-link-field="'iconUrl'"
+						>
+						</bubble-chat>
+					</div>
+				</slide-out>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
-import ToggleButton from "./components/ToggleButton.vue";
-import SlidePanel from "./components/SlidePanel.vue";
+import VideoPlayer from './components/VideoPlayer.vue';
 
 export default {
-  name: "App",
-  components: {
-    ToggleButton,
-    SlidePanel,
-  },
+	name: 'App',
+	components: {
+		VideoPlayer,
+	},
 
-  data() {
-    return {
-      // buttonToggled: false,
-      // visible: false,
-      // value: undefined,
-      // messagesList: [
-      //   {
-      //     username: "John Doe",
-      //     message: "Hey guys! How are you?",
-      //     iconUrl: "https://www.link-to-john-doe-pic.jpg",
-      //   },
-      // ],
-    };
-  },
-
-  methods: {
-    // handleStatusToggle: function (statusToggle) {
-    //   console.log(statusToggle);
-    // },
-  },
+	data() {
+		return {
+			buttonToggled: false,
+			visible: false,
+			value: undefined,
+			messagesList: [
+				{
+					username: 'John Doe',
+					message: 'Hey guys! How are you?',
+					iconUrl: '',
+				},
+			],
+		};
+	},
+	methods: {
+		toggleOn: function (event) {
+			this.buttonToggled = !this.buttonToggled;
+			this.visible = !this.visible;
+		},
+	},
 };
 </script>
 
 <style>
-#app {
-  margin-top: px;
-  font-size: 18px;
-  font-family: "Roboto", sans-serif;
-  color: blue;
+video {
+	width: 100%;
+	height: auto;
 }
 
-#button {
-  width: 45px;
-  float: right;
-  /* pura mágica */
-  position: absolute;
-  top: 50%; /* posiciona na metade da tela */
-  margin-top: -25px;
-}
-
-#footer {
-  position: fixed;
-  padding: 10px 10px 0px 10px;
-  bottom: 0;
-  width: 100%;
-  /* Height of the footer*/
-  height: 40px;
-  background: grey;
+.toggle {
+	padding: 5px 780px;
+	margin: 20px;
 }
 </style>
