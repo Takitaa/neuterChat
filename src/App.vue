@@ -22,14 +22,13 @@
 			<div id="side-panel" size="300">
 				<slide-out dock="right" :visible.sync="visible" :size="350">
 					<!---->
-
 					<div class="nav-wrapper">
 						<nav class="nav" id="nav">
 							<div class="default-nav">
 								<div class="main-nav">
 									<div class="toggleAvatar">
 										<VueToggles
-											id="toggle"
+											id="avatar-toggle"
 											height="25"
 											width="120"
 											margin="100"
@@ -48,21 +47,22 @@
 							<div class="content" id="chat"></div>
 						</div>
 						<div class="bottom" id="bottom">
-							<textarea class="input" id="mensagem"></textarea>
+							<textarea class="input" id="mensagem"> </textarea>
+
 							<div class="send" id="enviar"></div>
 						</div>
 					</div>
 
-					<!-- <div id="chat">
-						<p>Welcome to the Chat</p>
+					<div id="chat">
 						<bubble-chat
 							:position="chatPosition"
 							:messages="messagesList"
 							:text-field="'message'"
 							:sender-name-field="'username'"
-							:avatar-link-field="'iconUrl'"
+							:avatar-link-field="'iconUrl:'"
 						>
-						</bubble-chat> -->
+						</bubble-chat>
+					</div>
 				</slide-out>
 			</div>
 		</div>
@@ -83,16 +83,27 @@ export default {
 			buttonToggled: false,
 			buttonAvatar: false,
 			visible: false,
+			showMask: false,
 			value: undefined,
+
+			inputContent: '',
+
 			messagesList: [
 				{
 					username: 'John Doe',
 					message: 'Hey guys! How are you?',
-					iconUrl: '',
+					iconUrl: 'https://robohash.org/${this.inputContent}',
 				},
 			],
 		};
 	},
+
+	computed: {
+		setImage: function () {
+			return `<img src="https://robohash.org/${this.inputContent}">`;
+		},
+	},
+
 	methods: {
 		toggleOn: function (event) {
 			this.buttonToggled = !this.buttonToggled;
@@ -103,6 +114,10 @@ export default {
 
 		avatarShuffle: function (event) {
 			this.buttonAvatar = !this.buttonAvatar;
+		},
+
+		handleInputChange: function (event) {
+			this.inputContent = event.target.value;
 		},
 	},
 };
@@ -137,6 +152,7 @@ video {
 	z-index: 100;
 	transition: 0.3s ease;
 }
+
 .nav .default-nav {
 	height: 64px;
 	width: 100%;
@@ -186,5 +202,28 @@ video {
 
 .toggleAvatar {
 	padding: 10px 215px;
+}
+
+.app-button {
+	width: 400px;
+	min-height: 100px;
+	border-radius: 5px;
+
+	font-size: 20px;
+	padding: 10pxborder-radius;
+	background-color: #795899;
+	color: white;
+	font-weight: bold;
+}
+
+.moda {
+	display: none;
+	position: fixed;
+	z-index: 9999;
+	left: 0;
+	top: 0;
+	width: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
 }
 </style>
