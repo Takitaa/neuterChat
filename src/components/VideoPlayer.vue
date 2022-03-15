@@ -1,25 +1,26 @@
 <template>
 	<div class="video-player">
-		<video
-			id="video"
-			class="video-js"
-			width="1050"
-			muted="true"
-			preload="auto"
-			poster="//vjs.zencdn.net/v/oceans.png"
-			controls
-			playsinline="false"
-			data-setup="{}"
-		>
-			<source
-				src="https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,640x360_1000,950x540_1500,.f4v.csmil/master.m3u8"
-				type="application/x-mpegURL"
-			/>
-			<p class="vjs-no-js">
-				To view this video please enable JavaScript, and consider upgrading to a web browser that
-				<a href="http://videojs.com/html5-video-support/" target="_blank"> supports HTML5 video </a>
-			</p>
-		</video>
+		<center>
+			<video
+				id="video"
+				class="video-js"
+				width="1050"
+				muted="true"
+				preload="auto"
+				poster="//vjs.zencdn.net/v/oceans.png"
+				controls
+				data-setup="{}"
+			>
+				<source
+					src="https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,640x360_1000,950x540_1500,.f4v.csmil/master.m3u8"
+					type="application/x-mpegURL"
+				/>
+				<p class="vjs-no-js">
+					To view this video please enable JavaScript, and consider upgrading to a web browser that
+					<a href="http://videojs.com/html5-video-support/" target="_blank"> supports HTML5 video </a>
+				</p>
+			</video>
+		</center>
 	</div>
 </template>
 
